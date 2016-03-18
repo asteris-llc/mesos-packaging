@@ -7,22 +7,25 @@ env:
   - PACKAGE=mesos-agent-dynamic
   - PACKAGE=mesos-master
   - PACKAGE=mesos-master-dynamic
-
-  # we can't build Mesos on Travis right now because their version of GCC
-  # (4.6.3) is less than the required version for building Mesos (4.6)
-  # - PACKAGE=mesos
+  - PACKAGE=mesos
 
   # we don't build Marathon on the Travis infrastructure because it takes
   # *forever*
   # - PACKAGE=marathon
 
-sudo: false
+sudo: true
 
-addons:
-  apt:
-    packages:
-      # hammer
-      - rpm
+before_install:
+  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+  - sudo apt-get update -qq
+  - sudo apt-get install -qqy g++-4.8 autotools-dev autoconf libtool rpm git wget
+  - sudo apt-get install -qqy build-essential python-dev python-boto libcurl4-nss-dev libsasl2-dev libsasl2-modules maven libapr1-dev libsvn-dev libprotobuf-dev libprotobuf-java python-protobuf libboost-dev
+  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 1
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 1
+  - sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 3
+  - sudo update-alternatives --set cc /usr/bin/gcc 
+  - sudo update-alternatives --set g++ /usr/bin/g++-4.8
+  - sudo update-alternatives --set gcc /usr/bin/gcc-4.8
 
 install:
   # packages for packaging
