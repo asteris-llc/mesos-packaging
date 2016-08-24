@@ -5,7 +5,7 @@ echo `pwd`
 
 ## Dependencies
 sudo wget https://raw.githubusercontent.com/kazuho/picojson/v1.3.0/picojson.h -O /usr/local/include/picojson.h
-sudo yum install -y protobuf-devel protobuf-java protobuf-python boost-devel
+sudo yum install -y subversion-devel protobuf-devel protobuf-java protobuf-python boost-devel
 
 ## create an installation
 INSTALL={{.BuildRoot}}/out
