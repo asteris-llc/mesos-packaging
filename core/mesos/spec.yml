@@ -12,8 +12,8 @@ type: rpm
 depends:
   - cyrus-sasl
   - cyrus-sasl-md5
-  - subversion-devel
-  - protobuf-devel
+  - subversion-libs
+  - protobuf
 
 resources:
   - url: http://archive.apache.org/dist/mesos/{{.Version}}/mesos-{{.Version}}.tar.gz
